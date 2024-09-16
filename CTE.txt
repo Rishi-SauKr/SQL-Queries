@@ -1,0 +1,63 @@
+**Manish Sharma**
+CTE - Common Table Expression
+It is like a temporary table that exist only during the duration of a single SQL Statement.It is not stored anywhere
+Syntax
+WITH CTE_Name (col1,col2...)As(
+    --CTE Definition Query
+    SELECT col1,col2,...
+    FROM Table_Name
+    WHERE condition
+    GROUP BY col1,col2
+    ORDER BY col1
+)
+-- Main query using CTE(Will be treated as Virtual Table)
+SELECT * FROM CTE_Name
+
+Limitations
+single usage
+No indexing
+Limited to SELECT,UPDATE,INSERT and DELETE cannot be used in ALTER,CREATE TABLE (DDL Statement) or DCL Statement (Grant and Revoke)
+
+Example:-
+
+Need to identify customers who placed high-value orders in the last quater.Additionally,you want to calclate the total revenue generated.
+
+WITH highvalueorder_cte AS(
+    SELECT order_id,customer_id,order_date,total_amount from orders
+    where order_date >= date '2024-01-01' and order_date < date '2024-04-30'
+    and total_amount>1000
+)
+SELECT ho.customer_id,count(*) as num_high_value_orders,sum(ho.total_amount) as total_revenue from highvalueorder_cte ho GROUP BY ho.customer_id;
+
+Can we use multiple CTE in a single SQL Statement?
+
+Write CTE to analyze sales performance across different regions.Calculate the total sales amount.
+
+With RegionSales AS(
+    SELECT Region,SUM(amount) AS TotalSales From Sales GROUP BY Region
+),
+AvgSalesPerCustomer AS(
+    SELECT Region,AVG(amount) AS AvgSalesPerCustomer From Sales GROUP BY Region
+),
+OrderCount AS(
+    SELECT Region,COUNT(*) AS TotalOrders From Sales GROUP BY Region
+)
+SELECT rs.Region,rs.TotalSales,aspc.AvgSalesPerCustomer,oc.TotalOrders From RegionSales rs 
+JOIN AvgSalesPerCustomer aspc ON rs.Region=aspc.Region
+JOIN OrderCount oc ON rs.Region = oc.Region
+
+## DELETE Products from the products table where expiry date in the stock table is less than or equal to the current date
+
+WITH expired_med AS 
+(
+    SELECT m.medicine_id FROM medicines m 
+    JOIN stock s on m.medicine_id = s.medicine_id
+    WHERE s.expiry_date<=CURRENT_DATE
+)
+DELETE FROM medicines WHERE medicine_id IN(SELECT * FROM expired_med)
+
+Without CTE or SELECT Statements
+DELETE ROM medicines
+USING
+WHERE medicines.medicine_id = stock.medicine_id
+AND stock.expiry_date <=CURRENT_DATE

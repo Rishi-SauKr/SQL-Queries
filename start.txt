@@ -1,0 +1,114 @@
+** CHANNEL NAME - Riti Kumari **
+//Introduction
+1.Create a database 
+CREATE DATABASE company<database-name>;
+
+2.Create a table employee
+
+USE company; -> to tell the server to Create table in this DB
+CREATE TABLE employee(
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50)
+);
+
+3.Delete/drop the database/table;
+DROP DATABASE company
+DROP TABLE employee
+
+4. Create a table employee
+ CREATE TABLE Employee(
+    Employee_Id INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT
+ )
+
+ 5. Insert Data into Employee Table.
+ INSERT INTO Employee(Employee_Id,Name,Department,Salary) VALUES(1,"Saurabh Kumar","SDE2","250000"),(2,"Rahul Kumar","HRDE","200000");
+
+ 6.Update Salary for all people in HR Department to 20000.
+ UPDATE Employee SET SALARY=20000 where Department='HR'.
+
+7.Delete data for employee having employee_id=1
+DELETE FROM Employee where employee_id=1;
+
+ 8.Delete the entire table
+ DROP TABLE Employee;
+
+ 9.Delete entire data from table
+ DELETE FROM Employee; TRUNCATE TABLE Employee;
+
+// Aggregate Functions
+10.Find the total number of employees working in the "IT" Department;
+count all the rows including the null values.
+SELECT count(*) FROM Employee where Department='IT';
+
+11.Find all Employees having names starting with R.
+Like operator is used to search for a specified pattern. % and _ are used with LIKE.
+SELECT * FROM Employee where Name like 'R%';
+
+12. Find unique Salary in Employee table
+DISTINCT - retrieve unique rows.
+SELECT DISTINCT SALARY FROM Employee;
+
+13.Find second highest Salary
+// Highest - SELECT MAX(SALARY) from Employee;
+SELECT MIN(SALARY) from (SELECT SALARY FROM Employee ORDER BY SALARY DESC LIMIT 2);
+// Select maximum Salary from employee where Salary != maximum Salary
+SELECT MAX(SALARY) from employee where SALARY <>(SELECT MAX(SALARY) from employee);
+
+14. Find Nth highest Salary
+Limit(m,n) - helps retrieve a specific range of rows 
+m - no of rows to skip after beginning
+n - no. of rows to fetch after skipping
+SELECT MIN(SALARY) from (SELECT SALARY from Employee ORDER BY SALARY DESC LIMIT N);
+SELECT DISTINCT SALARY from Employee ORDER BY SALARY DESC LIMIT N-1,1;
+
+15.Find Top 2 SALARY.
+SELECT SALARY FROM Employee ORDER BY SALARY DESC LIMIT 2
+
+16.Find Total Salary and average Salary.
+SELECT Department,SUM(SALARY) as total_salary,AVG(SALARY) as avg_salary from employee GROUP BY Department;
+
+17.find rows where a Department has NULL values.
+SELECT * FROM employee where Department IS NULL;
+
+18.find duplicate rows in Employee for column Department.
+SELECT count(*),Department FROM Employee GROUP BY Department having count(*)>1;
+
+What is diff. between DELETE and TRUNCATE?
+DELETE is used to remove records based on a condition and the changes made can be rolled back.
+TRUNCATE removes all the rows from the table without logging individual deletion and cannot be rolled back.
+
+what is UNION ans UNION ALL.
+UNION combines the results of two queries and removes duplicate rows. while, UNION ALL combines the results of two queries and include all the duplicates.
+
+What is a stored procedure?
+A stored procedure is a prepared SQL code that you can save and reuse.
+
+What is the difference between CHAR() and VARCHAR()
+CHAR is used when we have data with fixed length.while, VARCHAR is used when we have data with variable length
+
+JOINS
+
+What is NULL in SQL?
+It is used to handle NULL values.
+
+What is foreign key?
+A foreign Key is a key that helps in establishing a relationship between the two tables.It uniquely identifies a row of another table.foreign key may or may not act as a primary key.
+
+What is a primary key?
+A primary key is a unique identifier/key which uniquely identifies all records in a table/relation.It must contain unique values and cannot contain NULL values.(UNIQUE+NOT NULL)
+
+What is a difference between WHERE and HAVING?
+Where is used to filter records before grouping and HAVING is used to filter records after grouping.
+
+What is a View?
+Views are a kind of virtual table in SQL.
+
+What is a DEFAULT constraint
+Whenever we need to fill a column with DEFAULT and fixed values we use DEFAULT,like to set DEFAULT Salary as 0 where Salary is NULL.
+
+What is ALIAS command in SQL?
+These are temporary name given to a table or column which is just a temporary change.

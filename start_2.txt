@@ -1,0 +1,47 @@
+** CHANNEL NAME - Riti Kumari PART-2**
+
+Data Retrival:
+Select : use for retrieving data from one or more table.
+
+Data Filtering:
+Where : filter records based on specific condition
+And,Or,Not : Combine multiple conditions.
+Between : Range search
+In : Checks whether a specified value matches any value in a subquery
+Like : pattern Matching(%,_)
+
+Aggregate Functions:
+AVG(),MIN(),MAX(),SUM(),COUNT() - counts the no. of non-null values,COUNT(*) - count(*) count no. of rows including the nulll values.
+
+Grouping and Filtering Groups
+Group By : Groups rows that have same values in specified column.
+Having : used with the Group By,filters groups based on specified condition.
+
+Sorting Data - order by DESC (By default ASC)- to sort result set.
+
+Data Retrival from one or more tables. - JOIN,INNER JOIN,OUTER JOIN,CROSS JOIN AND SELF JOIN.
+
+Conditional Logic : 
+CASE : perform conditional logic within a query using WHEN,THEN and ELSE;
+IF : Return values depending on whther a condition is true or false.
+
+LeetCode:
+Swap Salary:
+UPDATE SALARY SET sex=IF(sex='m','f','m');
+
+Duplicate Emails
+Select email from Person Group by email having count(email)>1;
+
+Employees Earning more than their Manangers
+SELECT e1.Name from Employee e1 JOIN Employee e2 ON e1.ManagerId = e2.id where e1.Salary>e2.Salary;
+
+Not Boring Movies
+!= same as <>
+SELECT * from Cinema where MOD(id,2)=1 AND description!='boring' order by rating DESC;
+
+Classes More than 5 Students
+Select Class from Courses Group by Class Having count(Student)>=5;
+
+COPY A TABLE IN SQL
+CREATE TABLE COPY_TABLE AS SELECT * from Employee; // ALONG with Data
+CREATE TABLE COPY_TABLE AS SELECT * from Employee where 1=2; // ONLY Structure
