@@ -5,7 +5,7 @@ What are Constraints in SQL? Types?
 3.PRIMARY KEY -  (UNIQUE + NOT NULL) Similiar to UNIQUE constraint but also signify that the column is primary key. And is used to uniquely identify the row in the table.
 4.FOREIGN KEY - Values in a column matches value of the primary key in another table. Is to used to establish relation hip in the database.
 5.CHECK - Allow custom role for data in a column
-6.DEFAULT - 
+6.DEFAULT - Set default value for a column
 
 Allows us Data Consistency and Accuracy.
 
@@ -25,5 +25,38 @@ CREATE TABLE Employee(
 CREATE TABLE Employee(
     ID int not NULL,
    AGE int,
-   CHECK(AGE>18)
+   CHECK(AGE>=18)
 );
+
+CREATE TABLE Employee(
+   ID int not NULL,
+   Dept varchar(255) DEFAULT 'IT'
+   AGE int,
+   CHECK(AGE>=18)
+);
+
+DDL - DATA DEFINITION LANGUAGE - Deals with the schema.(Create,Alter,Drop,Rename,Truncate)
+DML - DATA MANIPULATION LANGUAGE - Deals with data in the Tables.(Select,Insert,Update,Delete)
+DCL - DATA CONTROL LANGUAGE - Deals with roles (Grant,Revoke)
+TCL - TRANSACTION CONTROL LANGUAGE - Deals with Transaction (Commit,Rollback,Savepoint)
+
+
+ACID Properties in SQL:
+Atomicity,Consistency,Isolation,Durability
+
+Summary
+A transaction is a logical unit of work accessing or modifying a database, maintaining consistency through ACID properties.
+
+Key Pointers:
+Atomicity: A transaction is either fully completed or not executed at all.
+Consistency: Ensures the database remains in a valid state by adhering to integrity constraints.
+Isolation: Multiple transactions occur concurrently without inconsistencies.
+Durability: Once committed, transaction changes are permanent, even during system failures.
+Transactions must be executed serially to maintain data consistency and isolation.
+Concurrency control manager handles isolation; recovery manager handles durability.
+ACID properties ensure the correctness and reliability of DBMS transactions.
+Foreign keys must be maintained for data consistency.
+Isolation prevents dirty reads, non-repeatable reads, and phantom reads.
+The advantages include data consistency, integrity, concurrency control, and recovery.
+Disadvantages include performance overhead, scalability issues in large systems, and increased complexity.
+Balancing ACID benefits with specific needs is crucial due to potential performance and scalability issues.
