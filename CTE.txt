@@ -57,7 +57,7 @@ WITH expired_med AS
 DELETE FROM medicines WHERE medicine_id IN(SELECT * FROM expired_med)
 
 Without CTE or SELECT Statements
-DELETE ROM medicines
+DELETE FROM medicines
 USING
 WHERE medicines.medicine_id = stock.medicine_id
 AND stock.expiry_date <=CURRENT_DATE
