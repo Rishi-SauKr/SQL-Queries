@@ -15,3 +15,15 @@ CREATE TABLE Employee(
     Name varchar(255)
     CONSTRAINT id_u UNIQUE(ID)
 );
+
+CREATE TABLE Employee(
+    ID int not NULL,
+    Name varchar(255)
+    Dept_id int,
+   FOREIGN KEY(Dept_id) REFERENCES DEPARTMENT(Dept_id)
+);
+CREATE TABLE Employee(
+    ID int not NULL,
+   AGE int,
+   CHECK(AGE>18)
+);
