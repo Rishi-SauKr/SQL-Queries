@@ -1,0 +1,41 @@
+Combine rows from 2 or more tables based on a related column.
+
+Types of Join:
+INNER JOIN / JOIN
+Select orders.or_id,customers.cust_name FROM ORDERS INNER JOIN customers ON orders.cust_id=customers.id;
+
+LEFT JOIN
+All records from LEFT Table and mactching records from Right Table.
+Select orders.or_id,customers.cust_name FROM ORDERS LEFT JOIN customers ON orders.cust_id=customers.id;
+
+RIGHT JOIN
+All records from RIGHT Table and mactching records from Left Table.
+Select orders.or_id,customers.cust_name FROM ORDERS RIGHT JOIN customers ON orders.cust_id=customers.id;
+
+FULL OUTER JOIN
+All items from both the tables will be included. Matching records along with NULL values for Non-Matching records.
+
+SELF JOIN
+A Table is joined to itself.
+Select E.Employee_Name FROM Employee E INNER JOIN Employee M ON E.Employee_id = M.Manager_id;
+
+
+**NOTES
+For JOIN operation you technically need two column of same types.It doesn't matter whether they are primary or foreign key.
+
+UNION vs UNION ALL
+
+UNION and UNION ALL stacks rows on top of each other. The only difference between them is union remove duplicate records,
+where as UNION ALL keeps duplicate records.
+
+examples:
+Select age from teacher
+UNION
+Select age from student
+
+Select age from teacher
+UNION ALL
+Select age from student
+
+Cross Join - Cartesian Product of two tables rows.
+Select teacher.name,student.name FROM teacher CROSS JOIN student;

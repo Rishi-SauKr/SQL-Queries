@@ -3,7 +3,7 @@ What are Constraints in SQL? Types?
 1.NOT NULL - Column cannot have a null value.
 2.UNIQUE - Each value in a column is unique across all rows.
 3.PRIMARY KEY -  (UNIQUE + NOT NULL) Similiar to UNIQUE constraint but also signify that the column is primary key. And is used to uniquely identify the row in the table.
-4.FOREIGN KEY - Values in a column matches value of the primary key in another table. Is to used to establish relation hip in the database.
+4.FOREIGN KEY - Values in a column matches value of the primary key in another table. Is to used to establish relationship with another table's primary key in the database.
 5.CHECK - Allow custom role for data in a column
 6.DEFAULT - Set default value for a column
 
@@ -52,6 +52,7 @@ Atomicity: A transaction is either fully completed or not executed at all.
 Consistency: Ensures the database remains in a valid state by adhering to integrity constraints.
 Isolation: Multiple transactions occur concurrently without inconsistencies.
 Durability: Once committed, transaction changes are permanent, even during system failures.
+
 Transactions must be executed serially to maintain data consistency and isolation.
 Concurrency control manager handles isolation; recovery manager handles durability.
 ACID properties ensure the correctness and reliability of DBMS transactions.
