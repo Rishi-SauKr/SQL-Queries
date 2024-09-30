@@ -1,0 +1,9 @@
+Create a table with primary key id and auto increment enabled.
+unsigned value are not supported by SQL Server
+CREATE TABLE table_0 (
+    id BIGINT NOT NULL IDENTITY(1,1) PRIMARY KEY
+);
+
+To convert from INT to BIGINT
+ALTER TABLE table_0
+ALTER COLUMN id BIGINT NOT NULL;

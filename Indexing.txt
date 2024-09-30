@@ -1,0 +1,22 @@
+Indexing is used to optimize the performance of db by minimizing the no.of disk accesses which is required when a query is processed.
+
+Index Table
+    col1       col2
+Search Key   Data Reference
+
+Search key - primary key
+Data Reference - set of pointers address of the disk block.
+Table size increases then search time increases.
+
+Types of Indexing
+
+1. Primary Indexing a.)Dense b.)Sparse
+    When you have primary key in your index table
+    a.)Dense- No.of enteries in the index table is same as no. of index in the main table. Used if Table has unordered records.
+    b.)Sparse - No of enteries are less as compared to the main table and it consist of records to each block in main table.Used if Table has Ordered records.
+2. Clustering Index
+    In case of a non-unique key, such as dept_id(which can be same for many enteries).Index table conatins dept_id which will point to clusters of students belonging to same dept_id.
+3. Secondary Index
+    Two-level Indexing - A Second Index table is created for the primary Index Table which points to the main table.
+
+Refer NoteBook for More.

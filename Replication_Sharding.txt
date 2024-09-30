@@ -1,0 +1,23 @@
+In large-scale system, Database is the common bottleneck,
+To ensure that our large-scale system remains fast and reliable, we can use two Techniques:-
+DATABASE REPLICATION
+DATABASE SHARDING
+
+Database Replication - creating copies of the database in different server, so even if one server is down 
+we can access data from other servers.
+This ensure High Availbility and also scales read capability of the database.
+How Replication works?
+1.Leader-follower Replication - we have one master database and other slaves databases,write operation is directed to
+the leader which then propagates it to the other databases and read operation is directed to all the databases which increases read capacity.
+
+2.Leader-Leader Replication
+Here all the databases act as leader and each of them can accept read/write operations.In this case, we may have 
+conflicts between leader databases and we must have some conflict resolution mechanism to handle conflicts.
+
+This operations can be async or sync:-
+Async operation Syncs in background, faster than sync operation,can cause temporary data inconsistencies
+Leader and Follower are updated simultaneously,Guarantees consistency and impacts write performance.
+
+Scaling Writes in leader-leader Replication
+More complex as conflicts may arise due write operation in two different leader database.For this we require conflict resolution
+mechanism.
