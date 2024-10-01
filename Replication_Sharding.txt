@@ -21,3 +21,19 @@ Leader and Follower are updated simultaneously,Guarantees consistency and impact
 Scaling Writes in leader-leader Replication
 More complex as conflicts may arise due write operation in two different leader database.For this we require conflict resolution
 mechanism.
+conflict resolution mechanism types:-
+1.Timestamp-based resolution: The update with the latest timestamp wins.
+2.Last-write-wins: The most recent write ,regardless of timestamp,overrides previous ones.
+3.Custom conflict resolution logic: Application-specific rules.
+
+SHARDING
+When a database grows massive such that even single server might struggle to handle stoarge and processing demands.
+Sharding tackles this by distributing the data across multiple servers known as shards.
+e.g. Tables may be sharded by primary key or in case of a E-commerce website using region column.
+Shard keys determine how data is assigned to different shards.
+Types:- 
+Range based Sharding - data is partitioned using ranges of the shard keys.
+Hash-based Sharding - Hash function is appled to the shard key which determines in which shard the data is.This is less
+                    efficient as compared to range queries to find data we may have to query all shards. 
+SQL based databases don't offer Sharding out odf the box VS. NoSQL databases have build in Sharding support.
+Sharding enables horizontal scaling by distributing data across multiple servers
