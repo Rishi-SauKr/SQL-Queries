@@ -31,9 +31,16 @@ When a database grows massive such that even single server might struggle to han
 Sharding tackles this by distributing the data across multiple servers known as shards.
 e.g. Tables may be sharded by primary key or in case of a E-commerce website using region column.
 Shard keys determine how data is assigned to different shards.
+Advanatges:-
+1.Improves query performance - as we have to search for data in a shard that has less no. of rows.
+2.Avoid total service outage - as one shard becomes unavailable, data can be accessed from other shards.
+3.Helps horizontally scaling also you can add shards at runtime without without shutting down for maintainance.
+
 Types:- 
-Range based Sharding - data is partitioned using ranges of the shard keys.
+Range based Sharding - data is partitioned using ranges of the shard keys.may result in uneven distribution of data across shards rsulting in hotspots[A shard containing more data than other shards]
 Hash-based Sharding - Hash function is appled to the shard key which determines in which shard the data is.This is less
-                    efficient as compared to range queries to find data we may have to query all shards. 
+                    efficient as compared to range queries to find data we may have to query all shards.
+Directory Sharding - Here we have a lookup table which determines to which shard the data goes into. Downtime if lookup table is unavailable.
+GeoSharding - based on the physical geolocation associated with the record.e.g. dating sites stores users in different shards based on loc. may result in hotspots
 SQL based databases don't offer Sharding out odf the box VS. NoSQL databases have build in Sharding support.
 Sharding enables horizontal scaling by distributing data across multiple servers
